@@ -1,0 +1,91 @@
+<!-- View User -->
+<body>
+    <div class="data-profile-card" *ngIf="this.action == 'view'">
+        <div class="card-header">
+            <div class="avatar">{{ userData.name.charAt(0) | uppercase }}</div>
+            <div class="data-details">
+                <h2>{{ userData.name }}</h2>
+                <p class="dataname">{{ userData.dataname }}</p>
+            </div>
+            <div class="action-btn">
+                <button type="button" mat-icon-button matTooltip="Close Dialog" (click)="closeDialog()">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="card-section">
+            <h4>Contact</h4>
+            <p><i class="bi bi-envelope"></i> {{ userData.email }}</p>
+            <p><i class="bi bi-telephone"></i> {{ userData.phone }}</p>
+            <p><i class="bi bi-globe"></i> {{ userData.website }}</p>
+        </div>
+
+        <div class="card-section">
+            <h4>Address</h4>
+            <p>{{ userData.address.street }}, {{ userData.address.suite }}</p>
+            <p>{{ userData.address.city }}, {{ userData.address.zipcode }}</p>
+            <small>Geo: {{ userData.address.geo.lat }}, {{ userData.address.geo.lng }}</small>
+        </div>
+
+        <div class="card-section">
+            <h4>Company</h4>
+            <p><strong>{{ userData.company.name }}</strong></p>
+            <p><em>{{ userData.company.catchPhrase }}</em></p>
+            <p>{{ userData.company.bs }}</p>
+        </div>
+    </div>
+
+    <!-- Edit User -->
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="data-profile-card" *ngIf="this.action == 'edit' ||
+this.action == 'add'">
+        <div class="card-header">
+            <div class="avatar">{{ editForm.value.name?.charAt(0) | uppercase }}</div>
+            <div class="data-details">
+                <input formControlName="name" class="edit-input big" placeholder="Full Name" />
+                <input formControlName="username" class="edit-input small" placeholder="Username" />
+            </div>
+            <div class="action-btn">
+                <button type="button" mat-icon-button matTooltip="Close Dialog" (click)="closeDialog()">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="card-section">
+            <h4>Contact</h4>
+            <input formControlName="email" class="edit-input" placeholder="Email" />
+            <input formControlName="phone" class="edit-input" placeholder="Phone" />
+            <input formControlName="website" class="edit-input" placeholder="Website" />
+        </div>
+
+        <div class="card-section">
+            <h4>Address</h4>
+            <input formControlName="street" class="edit-input" placeholder="Street" />
+            <input formControlName="suite" class="edit-input" placeholder="Suite" />
+            <input formControlName="city" class="edit-input" placeholder="City" />
+            <input formControlName="zipcode" class="edit-input" placeholder="Zipcode" />
+        </div>
+
+        <div class="card-section">
+            <h4>Company</h4>
+            <input formControlName="companyName" class="edit-input" placeholder="Company Name" />
+            <input formControlName="catchPhrase" class="edit-input" placeholder="Catch Phrase" />
+            <input formControlName="bs" class="edit-input" placeholder="Business" />
+        </div>
+
+        <div style="justify-content: flex-end;display: flex;">
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+    </form>
+
+    <!-- Delete User -->
+    <div class="data-profile-card" *ngIf="this.action == 'delete'">
+        <h2 mat-dialog-title>Are you sure you want to Delete <b>{{userData.name}}</b> record ?</h2>
+        <div style="justify-content: center;display: flex;">
+            <button mat-raised-button style="margin-right: 10px;" color="primary" (click)="onDelete()">Yes</button>
+            <button mat-raised-button style="margin-right: 10px;" color="warn" (click)="closeDialog()">No</button>
+        </div>
+    </div>
+
+</body>

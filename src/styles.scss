@@ -1,0 +1,36 @@
+  .custom-table-container {
+      margin: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+
+      .mat-table {
+          width: 100%;
+          border-collapse: collapse;
+
+          th,
+          td {
+              padding: 12px 16px;
+              text-align: left;
+          }
+
+          th {
+              background-color: #f1f1f1;
+              font-weight: 600;
+          }
+
+          tr.mat-row:nth-child(even) {
+              background-color: #fafafa;
+          }
+      }
+  }
+
+  .d-flex {
+      display: flex;
+  }
+
+  .mat-mdc-dialog-surface {
+      height: auto !important;
+  }
